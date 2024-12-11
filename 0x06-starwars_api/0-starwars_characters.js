@@ -28,14 +28,14 @@ request(apiUrl, (err, res, body) => {
     return;
   }
 
-// Parse the response body to JSON
+  // Parse the response body to JSON
   const movieData = JSON.parse(body);
 
-// Retrieve the list of character URLs
+  // Retrieve the list of character URLs
   const characters = movieData.characters;
 
-// Fetch and print each character name in the order provided
-	fetchCharactersInOrder(characters, 0);
+  // Fetch and print each character name in the order provided
+  fetchCharactersInOrder(characters, 0);
 });
 
 /**
@@ -43,27 +43,27 @@ request(apiUrl, (err, res, body) => {
  * @param {string[]} characters - Array of character URLs
  * @param {number} index - Current index of the character being fetched
  */
-function fetchCharactersInOrder(characters, index) {
-	if (index >= characters.length) {
-		return;
-	}
+function fetchCharactersInOrder (characters, index) {
+  if (index >= characters.length) {
+    return;
+  }
 
-	request(characters[index], (err, res, body) => {
-		if (err) {
-			console.error(err);
-			return;
-		}
+  request(characters[index], (err, res, body) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
 
-		if (res.statusCode !== 200) {
-			console.error(`Error: Unable to fetch data for character ${index + 1}.`);
-			return;
-		}
+    if (res.statusCode !== 200) {
+      console.error(`Error: Unable to fetch data for character ${index + 1}.`);
+      return;
+    }
 
-		// Parse the character data and print the name
-		const characterData = JSON.parse(body);
-		console.log(characterData.name);
+    // Parse the character data and print the name
+    const characterData = JSON.parse(body);
+    console.log(characterData.name);
 
-		// Recursively fetch the next character
-		fetchCharactersInOrder(characters, index + 1);
-	});
+    // Recursively fetch the next character
+    fetchCharactersInOrder(characters, index + 1);
+  });
 }
