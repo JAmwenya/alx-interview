@@ -1,0 +1,1 @@
+0-starwars_characters.js - Script that prints all characters of a Star Wars movie
