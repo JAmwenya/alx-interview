@@ -1,0 +1,1 @@
+0-pascal_triangle.py - Generates Pascal's Triangle up to the nth row.
