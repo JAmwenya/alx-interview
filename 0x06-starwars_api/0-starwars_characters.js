@@ -4,13 +4,13 @@
  * Usage: ./0-starwars_characters.js <Movie ID>
  */
 
-const request = require("request");
+const request = require('request');
 
 // Get the movie ID from the command line arguments
 const movieId = process.argv[2];
 if (!movieId) {
-	console.error("Usage: ./0-starwars_characters.js <Movie ID>");
-	process.exit(1);
+  console.error("Usage: ./0-starwars_characters.js <Movie ID>");
+  process.exit(1);
 }
 
 // Base URL for the Star Wars API
@@ -18,9 +18,9 @@ const apiUrl = `https://swapi-api.hbtn.io/api/films/${movieId}/`;
 
 // Make a GET request to the API to fetch the movie details
 request(apiUrl, (err, res, body) => {
-	if (err) {
-		console.error(err);
-		return;
+  if (err) {
+    console.error(err);
+    return;
 	}
 
 	if (res.statusCode !== 200) {
