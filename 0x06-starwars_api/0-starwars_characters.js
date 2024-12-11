@@ -9,7 +9,7 @@ const request = require('request');
 // Get the movie ID from the command line arguments
 const movieId = process.argv[2];
 if (!movieId) {
-  console.error("Usage: ./0-starwars_characters.js <Movie ID>");
+  console.error('Usage: ./0-starwars_characters.js <Movie ID>');
   process.exit(1);
 }
 
@@ -21,20 +21,20 @@ request(apiUrl, (err, res, body) => {
   if (err) {
     console.error(err);
     return;
-	}
+  }
 
-	if (res.statusCode !== 200) {
-		console.error(`Error: Unable to fetch data for movie ID ${movieId}.`);
-		return;
-	}
+  if (res.statusCode !== 200) {
+    console.error(`Error: Unable to fetch data for movie ID ${movieId}.`);
+    return;
+  }
 
-	// Parse the response body to JSON
-	const movieData = JSON.parse(body);
+// Parse the response body to JSON
+  const movieData = JSON.parse(body);
 
-	// Retrieve the list of character URLs
-	const characters = movieData.characters;
+// Retrieve the list of character URLs
+  const characters = movieData.characters;
 
-	// Fetch and print each character name in the order provided
+// Fetch and print each character name in the order provided
 	fetchCharactersInOrder(characters, 0);
 });
 
