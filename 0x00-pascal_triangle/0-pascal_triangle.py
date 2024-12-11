@@ -9,10 +9,10 @@ def pascal_triangle(n):
     Generate Pascal's Triangle up to the nth row.
 
     Args:
-        n (int): The number of rows to generate. Must be a non-negative integer.
+        n (int): Number of rows to generate. Must be a non-negative integer.
 
     Returns:
-        list: A list of lists. Each inner list represents a row of the Triangle.
+        list: A list of lists. The inner list represents a row of the Triangle.
               Returns an empty list if n <= 0.
 
     Example:
