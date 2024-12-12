@@ -26,6 +26,10 @@ def make_change(coins, total):
         >>> make_change([2], 3)
         -1
     """
+    # Check for invalid coin list
+    if not coins:
+        return -1
+
     # If total is 0 or less, no coins are needed
     if total <= 0:
         return 0
