@@ -13,13 +13,17 @@ def sieve_of_eratosthenes(limit):
     Returns:
     list: List of primes up to the given 'limit'.
     """
+    if limit < 2:
+        return []
+    
     primes = [True] * (limit + 1)
-    primes[0], primes[1] = False, False  # 0 and 1 are not primes
+    primes[0], primes[1] = False, False
     for num in range(2, int(limit ** 0.5) + 1):
         if primes[num]:
             for multiple in range(num * num, limit + 1, num):
                 primes[multiple] = False
     return [num for num, is_prime in enumerate(primes) if is_prime]
+
 
 def isWinner(x, nums):
     """
