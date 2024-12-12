@@ -28,21 +28,19 @@ def sieve_of_eratosthenes(limit):
 def isWinner(x, nums):
     """
     Determines the winner of a series of rounds in the Prime Game.
-    
-    Parameters:
-    x (int): The number of rounds.
-    nums (list): A list of integers representing 'n' for each round.
-    
-    Returns:
-    str: Name of the player with the most wins ("Maria" or "Ben").
-    None: If the result is a tie.
     """
+    if x == 0 or not nums:
+        return None  # No rounds or empty list of rounds
+    
     max_n = max(nums)  # Find the maximum 'n' value
-    primes = sieve_of_eratosthenes(max_n)  # Precompute all primes
+    primes = sieve_of_eratosthenes(max_n)
     maria_wins = 0
     ben_wins = 0
     
     for n in nums:
+        if n < 2:  # Skip invalid rounds where n < 2
+            continue
+        
         # Game state initialization
         available_primes = [prime for prime in primes if prime <= n]
         
@@ -60,7 +58,7 @@ def isWinner(x, nums):
         if current_player == "Maria":
             ben_wins += 1  # Maria couldn't make a move, Ben wins
         else:
-            maria_wins += 1  # Ben couldn't make a move, Maria wins
+            maria_wins += 1
     
     # Determine who won the most rounds
     if maria_wins > ben_wins:
