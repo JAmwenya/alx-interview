@@ -24,6 +24,7 @@ def sieve_of_eratosthenes(limit):
                 primes[multiple] = False
     return [num for num, is_prime in enumerate(primes) if is_prime]
 
+
 def isWinner(x, nums):
     """
     Determines the winner of a series of rounds in the Prime Game.
@@ -85,3 +86,4 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None  # It's a tie
+
