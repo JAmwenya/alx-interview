@@ -1,1 +1,1 @@
-this directory contains a function to calculate the perimeter of an island in a grid as an interview question solution attempt.
+this directory contains a module with a function to calculate the perimeter of an island in a grid as an interview question solution attempt.
