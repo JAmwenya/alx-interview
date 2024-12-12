@@ -3,11 +3,11 @@
 module that calculates minimum number of coins required to make a given total.
 
 Functions:
-    make_change(coins: list, total: int) -> int
+    makeChange(coins: list, total: int) -> int
         Calculates the minimum number of coins needed to make a given total.
 """
 
-def make_change(coins, total):
+def makeChange(coins, total):
     """
     Calculate the minimum number of coins required to achieve the given total.
 
@@ -21,9 +21,9 @@ def make_change(coins, total):
              Returns -1 if it's impossible to make the total.
 
     Example:
-        >>> make_change([1, 2, 5], 11)
+        >>> makeChange([1, 2, 5], 11)
         3
-        >>> make_change([2], 3)
+        >>> makeChange([2], 3)
         -1
     """
     # Check for invalid coin list
