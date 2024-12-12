@@ -36,8 +36,8 @@ def isWinner(x, nums):
     str: Name of the player with the most wins ("Maria" or "Ben").
     None: If the result is a tie.
     """
-    if x == 0 or not nums:
-        return None  # No rounds or empty list of rounds
+    if x <= 0 or not nums:
+        return None  # If no rounds or invalid number of rounds
     
     max_n = max(nums)  # Find the maximum 'n' value
     primes = sieve_of_eratosthenes(max_n)  # Precompute all primes
