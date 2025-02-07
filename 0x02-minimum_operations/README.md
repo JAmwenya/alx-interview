@@ -1,0 +1,1 @@
+This directory contains a module that has a function to calculate the minimum number of operations needed to achieve exactly n characters using Copy All and Paste operations.
