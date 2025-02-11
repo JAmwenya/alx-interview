@@ -1,67 +1,50 @@
-#!/usr/bin/env python3
-"""
-Log parsing script that reads stdin line by line and computes metrics.
-"""
-
+#!/usr/bin/python3
+'''
+read line from stdin process data
+and returns the sizes of codes
+'''
 import sys
 
 
-def print_stats(file_size: int, status_codes: dict):
-    """
-    Prints the accumulated metrics.
+status_codes_dict = {'200': 0, '301': 0, '400': 0, '401': 0,
+                     '403': 0, '404': 0, '405': 0, '500': 0}
 
-    Args:
-        file_size (int): Total file size accumulated.
-        status_codes (dict): Dictionary containing status codes and their counts.
-    """
-    print(f"File size: {file_size}")
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print(f"{code}: {status_codes[code]}")
+total_size = 0
+count = 0
 
+try:
+    for line in sys.stdin:
+        line_list = line.split(" ")
 
-def parse_logs():
-    """
-    Reads stdin line by line, parses log entries, and computes metrics.
-    """
-    total_file_size = 0
-    status_code_counts = {
-        200: 0,
-        301: 0,
-        400: 0,
-        401: 0,
-        403: 0,
-        404: 0,
-        405: 0,
-        500: 0,
-    }
-    line_count = 0
+        if len(line_list) > 4:
+            status_code = line_list[-2]
+            file_size = int(line_list[-1])
 
-    try:
-        for line in sys.stdin:
-            line_count += 1
-            try:
-                parts = line.split()
-                file_size = int(parts[-1])
-                status_code = int(parts[-2])
+            # check if the status code receive exists in the dictionary and
+            # increment its count
+            if status_code in status_codes_dict.keys():
+                status_codes_dict[status_code] += 1
 
-                total_file_size += file_size
+            # update total size
+            total_size += file_size
 
-                if status_code in status_code_counts:
-                    status_code_counts[status_code] += 1
-            except (IndexError, ValueError):
-                # Skip lines with incorrect format
-                continue
+            # update count of lines
+            count += 1
 
-            if line_count % 10 == 0:
-                print_stats(total_file_size, status_code_counts)
+        if count == 10:
+            count = 0  # reset count
+            print('File size: {}'.format(total_size))
 
-    except KeyboardInterrupt:
-        print_stats(total_file_size, status_code_counts)
-        raise
+            # print out status code counts
+            for key, value in sorted(status_codes_dict.items()):
+                if value != 0:
+                    print('{}: {}'.format(key, value))
 
-    print_stats(total_file_size, status_code_counts)
+except Exception as err:
+    pass
 
-
-if __name__ == "__main__":
-    parse_logs()
+finally:
+    print('File size: {}'.format(total_size))
+    for key, value in sorted(status_codes_dict.items()):
+        if value != 0:
+            print('{}: {}'.format(key, value))
